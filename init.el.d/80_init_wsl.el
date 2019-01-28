@@ -1,53 +1,65 @@
 ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ファイルごとに文字コードを設定する
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(modify-coding-system-alist 'file "\\.cs\\'"  'sjis-dos)
-(modify-coding-system-alist 'file "\\.ps1\\'" 'sjis-dos)
+(setq-default system-type-wsl  system-type) ;; get the system-type value
+(cond
+ ;; If type is "gnu/linux", override to "wsl/linux" if it's WSL.
+ ((eq system-type-wsl 'gnu/linux)
+  (when (string-match "Linux.*Microsoft.*Linux"
+                      (shell-command-to-string "uname -a"))
+     (setq-default system-type-wsl "wsl/linux"))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Font
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (set-face-attribute 'default nil :family "MyricaM M" :height 130)
-;; (set-face-attribute 'default nil :family "Rounded-X Mgen+ 1mn regular" :height 130)
-(set-face-attribute 'default nil :family "Osaka－等幅" :height 130)
+(let ((st system-type-wsl))
+  (message st)
+  (cond ((string= st 'wsl/linux) ; Windows WSL
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; ファイルごとに文字コードを設定する
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         (modify-coding-system-alist 'file "\\.cs\\'"  'sjis-dos)
+         (modify-coding-system-alist 'file "\\.ps1\\'" 'sjis-dos)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Mozc
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq default-input-method "japanese-mozc")
-(require 'mozc)
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; Font
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; (set-face-attribute 'default nil :family "MyricaM M" :height 130)
+         ;; (set-face-attribute 'default nil :family "Rounded-X Mgen+ 1mn regular" :height 130)
+         (set-face-attribute 'default nil :family "Osaka－等幅" :height 130)
 
-;; うまく動作しない
-;(global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
-;(define-key global-map (kbd "<zenkaku-hankaku>") 'toggle-input-method)
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; Mozc
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         (setq default-input-method "japanese-mozc")
+         (require 'mozc)
 
-;; helm でミニバッファの入力時に IME の状態を継承しない
-(setq helm-inherit-input-method nil)
+         ;; ;; うまく動作しない
+         ;; ;(global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
+         ;; ;(define-key global-map (kbd "<zenkaku-hankaku>") 'toggle-input-method)
 
-;; helm の検索パターンを mozc を使って入力した場合にエラーが発生することがあるのを改善する
-(advice-add 'mozc-helper-process-recv-response
-            :around (lambda (orig-fun &rest args)
-                      (cl-loop for return-value = (apply orig-fun args)
-                               if return-value return it)))
+         ;; helm でミニバッファの入力時に IME の状態を継承しない
+         (setq helm-inherit-input-method nil)
 
-;; helm の検索パターンを mozc を使って入力する場合、入力中は helm の候補の更新を停止する
-(advice-add 'mozc-candidate-dispatch
-            :before (lambda (&rest args)
-                      (when helm-alive-p
-                          (cl-case (nth 0 args)
-                            ('update
-                             (unless helm-suspend-update-flag
-                               (helm-kill-async-processes)
-                               (setq helm-pattern "")
-                               (setq helm-suspend-update-flag t)))
-                            ('clean-up
-                             (when helm-suspend-update-flag
-                               (setq helm-suspend-update-flag nil)))))))
+         ;; helm の検索パターンを mozc を使って入力した場合にエラーが発生することがあるのを改善する
+         (advice-add 'mozc-helper-process-recv-response
+                     :around (lambda (orig-fun &rest args)
+                               (cl-loop for return-value = (apply orig-fun args)
+                                        if return-value return it)))
 
-;; helm で候補のアクションを表示する際に IME を OFF にする
-(advice-add 'helm-select-action
-            :before (lambda (&rest args)
-                      (deactivate-input-method)))
+         ;; helm の検索パターンを mozc を使って入力する場合、入力中は helm の候補の更新を停止する
+         (advice-add 'mozc-candidate-dispatch
+                     :before (lambda (&rest args)
+                               (when helm-alive-p
+                                 (cl-case (nth 0 args)
+                                   ('update
+                                    (unless helm-suspend-update-flag
+                                      (helm-kill-async-processes)
+                                      (setq helm-pattern "")
+                                      (setq helm-suspend-update-flag t)))
+                                   ('clean-up
+                                    (when helm-suspend-update-flag
+                                      (setq helm-suspend-update-flag nil)))))))
 
+         ;; helm で候補のアクションを表示する際に IME を OFF にする
+         (advice-add 'helm-select-action
+                     :before (lambda (&rest args)
+                               (deactivate-input-method)))
+
+)))
