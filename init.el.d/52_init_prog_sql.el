@@ -8,6 +8,7 @@
 ;; C-c C-s : 'sql-send-string
 ;; C-c C-b : 'sql-send-buffer
 (require 'sql)
+(setq sql-indent-offset 2)
 
 (add-hook 'sql-interactive-mode-hook
           #'(lambda ()

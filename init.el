@@ -10,10 +10,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (package-initialize)
 (setq package-archives
-      '(;("gnu"   . "http://elpa.gnu.org/packages/")
+      '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
-        ;("org"   . "http://orgmode.org/elpa/")
-))
+        ("org"   . "http://orgmode.org/elpa/")))
+
+
 
 ;; バックアップを残さない
 (setq make-backup-files nil)
@@ -27,6 +28,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'init-loader)
 (init-loader-load "~/.emacs.d/init.el.d/")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,7 +38,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (markdown-preview-mode markdown-mode+ markdown-mode mozc open-junk-file helm powershell sql-indent init-loader dracula-theme jedi wgrep sublime-themes helm-gtags elscreen csharp-mode auto-complete)))
+    (helm-gtags cmake-mode sql-indent dockerfile-mode exec-path-from-shell powershell markdown-mode markdown-preview-eww open-junk-file auto-install dracula-theme csharp-mode magit sr-speedbar yasnippet py-autopep8 jedi wgrep auto-complete helm elscreen init-loader)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -44,3 +46,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+

@@ -13,10 +13,6 @@
 (setq my-org-agenda-dir "~/org/")
 (setq org-agenda-files (list my-org-agenda-dir))
 
-;; TODO状態
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "WORK(w)" "STAY(s)" "DONE(d)")))
-
 ;; DONEの時刻を記録
 (setq org-log-done 'time)
 

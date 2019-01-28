@@ -4,7 +4,7 @@
 ;; 詳しいキーバインド操作：http://dev.ariel-networks.com/articles/emacs/part5/
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
-;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
+(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
 
 ;; マルチスクリーン(elscreen)
 (elscreen-start)
@@ -21,13 +21,35 @@
 (setq wgrep-change-readonly-file t)
 
 ;; GITクライアント
-;(require 'magit)
+(require 'magit)
 
 ;; SpeedBar
 (setq sr-speedbar-right-side nil)
 
 ;; Open a junk
 (require 'open-junk-file)
-;(setq open-junk-file-format "~/junk/%Y-%m%d-%H%M%S.")
 (setq open-junk-file-format "~/win_home/junk/%Y-%m%d-%H%M%S.")
 (global-set-key "\C-xj" 'open-junk-file)
+
+;; SSH
+(require 'tramp)
+(setq tramp-default-method "ssh")
+
+;; Insert date
+(defun my-insert-date ()
+  (interactive)
+  (setq system-time-locale "C")
+  (insert (concat
+           (format-time-string "%Y/%m/%d")
+          ;(format-time-string "%Y/%m/%d(%a) %H:%M:%S"))))
+           )))
+;; Insert time
+(defun my-insert-time ()
+  (interactive)
+  (setq system-time-locale "C")
+  (insert (concat
+           (format-time-string "%H:%M:%S")
+          ;(format-time-string "%Y/%m/%d(%a) %H:%M:%S"))))
+           )))
+(global-set-key [(control ?\;)] 'my-insert-date)
+(global-set-key [(control ?\:)] 'my-insert-time)

@@ -1,10 +1,10 @@
-; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+﻿; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Show candicate(M-x xxx)
-(icomplete-mode 1)
+(icomplete-mode 1)             
 
 ;; go to current buffer when select.
 (global-set-key "\C-x\C-b" 'buffer-menu)

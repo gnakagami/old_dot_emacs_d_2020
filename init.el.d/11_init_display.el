@@ -66,9 +66,3 @@
         '(:eval (format my-mode-line-format
                         (count-lines (point-max) (point-min))))))
 
-;; 下線表示
-(global-hl-line-mode 1)
-(set-face-background 'highlight "#333")
-(set-face-foreground 'highlight nil)
-(set-face-underline-p 'highlight t)
-

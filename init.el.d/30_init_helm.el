@@ -1,4 +1,4 @@
-﻿; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helm
@@ -25,6 +25,7 @@
 
 ;; Helm for gtags
 (require 'helm-gtags)
+(setq helm-gtags-path-style 'root)
 (setq helm-gtags-auto-update t)
 (add-hook 'helm-gtags-mode-hook
           '(lambda ()
@@ -32,7 +33,7 @@
              (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
              (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
              (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook      'helm-gtags-mode)
+(add-hook 'c++-mode-hook    'helm-gtags-mode)
 (add-hook 'csharp-mode-hook 'helm-gtags-mode)
 (add-hook 'python-mode-hook 'helm-gtags-mode)

@@ -9,8 +9,15 @@
      (setq-default system-type-wsl "wsl/linux"))))
 
 (let ((st system-type-wsl))
-  (message st)
   (cond ((string= st 'wsl/linux) ; Windows WSL
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; hl-line-mode
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         (global-hl-line-mode 1)
+         (set-face-background 'highlight "#333")
+         (set-face-foreground 'highlight nil)
+         (set-face-underline-p 'highlight t)
+
          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
          ;; ファイルごとに文字コードを設定する
          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
