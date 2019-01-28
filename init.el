@@ -10,7 +10,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; package system
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(package-initialize)
+;(package-initialize)
 (setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
@@ -39,7 +39,7 @@
  '(c-tab-always-indent nil)
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
-   '(ein helm-gtags cmake-mode sql-indent dockerfile-mode exec-path-from-shell powershell markdown-mode markdown-preview-eww open-junk-file auto-install dracula-theme csharp-mode magit sr-speedbar yasnippet py-autopep8 jedi wgrep auto-complete helm elscreen init-loader))
+   '(migemo ein helm-gtags cmake-mode sql-indent dockerfile-mode exec-path-from-shell powershell markdown-mode markdown-preview-eww open-junk-file auto-install dracula-theme csharp-mode magit sr-speedbar yasnippet py-autopep8 jedi wgrep auto-complete helm elscreen init-loader))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
