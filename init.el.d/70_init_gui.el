@@ -73,18 +73,14 @@
 
       ;; Linux/Windows(WSL)
       (if (eq system-type 'gnu/linux)
-          (set-face-attribute 'default nil :family "RobotoJ Mono" :height 130))
-
-      ;; Windows(WSL)
-      (if (string= system-type-wsl "wsl/linux")
           (progn
+            (set-face-attribute 'default nil :family "RobotoJ Mono" :height 130)
             ;; Mozc
             (setq default-input-method "japanese-mozc")
             (require 'mozc)
-
-            ;; うまく動作しない
-            ;; ;(global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
-            ;; ;(define-key global-map (kbd "<zenkaku-hankaku>") 'toggle-input-method)
+            ;; for flicker in bellow
+            ;; -> xset -r 49
+            (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
 
             ;; helm でミニバッファの入力時に IME の状態を継承しない
             (setq helm-inherit-input-method nil)
@@ -114,6 +110,12 @@
                         :before (lambda (&rest args)
                                   (deactivate-input-method)))
        ))
+
+      ;; Windows(WSL)
+      ;; (if (string= system-type-wsl "wsl/linux")
+      ;;     (progn
+      ;;       (....)
+      ;; ))
 
       ;; Mac
       (if (eq system-type 'darwin)
