@@ -120,6 +120,8 @@
       ;; Mac
       (if (eq system-type 'darwin)
           (progn
+            ;; font
+            (set-face-attribute 'default nil :family "RobotoJ Mono" :height 160)
             ;; optionキーをMetaキーに
             (setq mac-option-modifier 'meta)
             ;; cmigemo
@@ -129,6 +131,11 @@
             ;; Set your installed path
             (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
             (setq migemo-user-dictionary nil)
+
+
+
+
+
             (setq migemo-regex-dictionary nil)
             (setq migemo-coding-system 'utf-8-unix)
             (migemo-init)))
