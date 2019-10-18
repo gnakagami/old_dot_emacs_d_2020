@@ -4,7 +4,7 @@
 ;;  elpy
 ;; ------------------------------
 (elpy-enable)
-(setq elpy-rpc-backend "rope") ; or 'jedi'
+(setq elpy-rpc-backend "jedi") ; or 'jedi'
 
 (defun my-python-compile ()
   "Use compile to run python programs"
