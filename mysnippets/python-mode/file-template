@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: file-template
+# key: temp
+# --
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import sys
+import os
+import argparse
+
+
+def main(args):
+    return 0
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument(
+        '-d',
+        '--debug',
+        help="Enable debug mode",
+        action="store_true",
+    )
+    sys.exit(main(args))
