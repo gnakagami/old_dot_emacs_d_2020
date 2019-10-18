@@ -53,7 +53,7 @@
  '(helm-ff-auto-update-initial-value nil)
  '(package-selected-packages
    (quote
-    (mozc elpy migemo ein helm-gtags cmake-mode sql-indent dockerfile-mode exec-path-from-shell powershell markdown-mode markdown-preview-eww open-junk-file auto-install dracula-theme csharp-mode magit sr-speedbar yasnippet py-autopep8 jedi wgrep auto-complete helm elscreen init-loader)))
+    (ssh py-yapf markdown-mode+ markdown-preview-mode mozc elpy migemo ein helm-gtags cmake-mode sql-indent dockerfile-mode exec-path-from-shell powershell markdown-mode markdown-preview-eww open-junk-file auto-install dracula-theme csharp-mode magit sr-speedbar yasnippet py-autopep8 jedi wgrep auto-complete helm elscreen init-loader)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

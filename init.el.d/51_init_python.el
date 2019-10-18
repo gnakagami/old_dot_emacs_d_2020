@@ -6,7 +6,7 @@
 (elpy-enable)
 (setq elpy-rpc-backend "jedi") ; or 'jedi'
 
-(defun my-python-compile ()
+(defun exec-python ()
   "Use compile to run python programs"
   (interactive)
   (compile (concat "python " (buffer-file-name)))
@@ -17,7 +17,7 @@
  (lambda ()
    (auto-complete-mode -1)
    ;; (py-yapf-enable-on-save)
-   (define-key elpy-mode-map "\C-c\C-c" 'my-python-compile)
+   ;; (define-key elpy-mode-map "\C-c\C-c" 'exec-python)
    (highlight-indentation-mode -1))
 )
 
