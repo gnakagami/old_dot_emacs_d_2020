@@ -74,7 +74,7 @@
       ;; Linux/Windows(WSL)
       (if (eq system-type 'gnu/linux)
           (progn
-            (set-face-attribute 'default nil :family "RobotoJ Mono" :height 130)
+            (set-face-attribute 'default nil :family "RobotoJ Mono" :height 140)
             ;; Mozc
             (setq default-input-method "japanese-mozc")
             (require 'mozc)
