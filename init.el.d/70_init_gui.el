@@ -120,6 +120,8 @@
       ;; Mac
       (if (eq system-type 'darwin)
           (progn
+            ;; font
+            (set-face-attribute 'default nil :family "RobotoJ Mono" :height 160)
             ;; optionキーをMetaキーに
             (setq mac-option-modifier 'meta)
             ;; cmigemo
