@@ -40,7 +40,7 @@
 ;; ------------------------------
 (require 'open-junk-file)
 (if (eq system-type 'gnu/linux)
-    (setq junk-dir-root "~/win_home/sources/junk")
+    (setq junk-dir-root "~/win_home/junk")
     (setq junk-dir-root "~/works/junk"))
 (setq open-junk-file-format (concat junk-dir-root "/%y%m%d-%H%M%S."))
 (global-set-key "\C-xj" 'open-junk-file)
@@ -70,3 +70,14 @@
            )))
 (global-set-key [(control ?\;)] 'my-insert-date)
 (global-set-key [(control ?\:)] 'my-insert-time)
+
+;;
+;; Open work report
+;;
+(defun work-report-open ()
+  (interactive)
+  (let ((work_report_root "~/win_home/junk")
+        (work_report_name
+         (concat (format-time-string "%y%m00") "_work_report.org")))
+    (find-file (concat work_report_root "/" work_report_name)))
+)

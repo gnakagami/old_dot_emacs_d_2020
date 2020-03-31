@@ -13,8 +13,12 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; org-directory内のファイルすべてからagendaを作成する
-(setq my-org-agenda-dir "~/org/")
+(setq my-org-agenda-dir "~/win_home/junk")
 (setq org-agenda-files (list my-org-agenda-dir))
+
+;; TODO
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WORK(w)" "|" "DONE(d)" "CANCELED(c)" )))
 
 ;; DONEの時刻を記録
 (setq org-log-done 'time)
