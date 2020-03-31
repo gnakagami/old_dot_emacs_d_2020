@@ -47,3 +47,16 @@
         (start-process "open application" nil "cygstart" file))
       )))
 
+;; Customize Date/Time format
+;;   -L : シンボリックリンクをディレクトリとして表示
+(setq dired-listing-switches
+      "-alh --group-directories-first --time-style \"+%y-%m-%d %H:%M:%S\"")
+
+;;
+;; 表示項目を指定
+;;
+(require 'dired-details-s)
+(setq dired-details-s-types
+  '((size-time  . (user group size time))
+    (all        . (perms links user group size time))
+    (no-details . ())))
