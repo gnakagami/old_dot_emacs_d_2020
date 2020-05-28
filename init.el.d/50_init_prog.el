@@ -47,6 +47,7 @@
 
 ;; char-mode is sjis
 (modify-coding-system-alist 'file "\\.bat\\'" 'sjis-dos)
+(modify-coding-system-alist 'file "\\.sql\\'" 'sjis-dos)
 
 ;; ------------------------------
 ;;  shell-script

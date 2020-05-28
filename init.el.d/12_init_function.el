@@ -78,6 +78,6 @@
   (interactive)
   (let ((work_report_root "~/win_home/junk")
         (work_report_name
-         (concat (format-time-string "%y%m00") "_work_report.org")))
+         (concat (format-time-string "%y%m00") "_WR.org")))
     (find-file (concat work_report_root "/" work_report_name)))
 )
